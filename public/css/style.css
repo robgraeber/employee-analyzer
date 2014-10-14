@@ -1,0 +1,56 @@
+.HomePage {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+.HomePage input{
+  display: inline;
+  margin : 0 auto;
+}
+.HomePage .input-fields{
+  position: relative;
+  left: 50%;
+  margin-left: -140px;
+  margin-bottom: 10px;
+  width: 400px;
+  text-align: left;
+}
+.HomePage table{
+  border-collapse: separate;
+  border-spacing: 10px 10px;
+}
+.HomePage #status-text{
+  display: inline-block;
+  width: 50px;
+}
+
+.EmployeePage {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.EmployeePage table{
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 5px 5px;
+}
+.EmployeePage table, th{
+  text-align: center;
+}
+
+.SalaryPage {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.SalaryPage table{
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 5px 5px;
+}
+.SalaryPage table, th{
+  text-align: center;
+}

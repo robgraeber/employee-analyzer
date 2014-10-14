@@ -27,8 +27,12 @@ app.use(express.cookieSession({
 }));
 app.use(app.router);
 
-require('./routes')(app);
-
+['./routes/api/employee-groups/'].forEach(function(routePath){
+  require(routePath)(app);
+});
+app.get('*', function(req, res) {
+  res.sendfile('public/index.html', {root: __dirname })
+});
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

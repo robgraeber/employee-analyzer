@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- App Templates -->
+  <script id="HomePage" type="text/template">
+    <div class="submit-form">
+      <h2>Submit Data</h2>
+      <form id="csv-form" action="/api/employee-groups" enctype="multipart/form-data" method="post">
+        <div class="input-fields">
+          <table>
+          <tr><td>Employees:</td> <td><input type="file" name="employees"></td></tr>
+          <tr><td>Salaries:</td> <td><input type="file" name="salaries"></td></tr>
+          </table>
+        </div>
+        <input type="submit" value="Upload"><span id="status-text">0%</span>
+      </form>
+    </div>
+  </script>
+
+  <script id="EmployeePage" type="text/template">
+    <h2>Employee Page</h2>
+    <div id="table-container"></div>
+  </script>
+  <script id="EmployeeCollectionView" type="text/template">
+    <table id="employee-table">
+      <thead>
+        <tr>
+          <th> Employee Id </th>
+          <th> Full Name </th>
+          <th> Sex </th>
+          <th> StartDate </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </script>
+
+  <script id="EmployeeView" type="text/template">
+    <td><%= employeeId %></td>
+    <td><a href="employees/<%= employeeId %>/salaries"><%= firstName + " " + lastName %></a></td>
+    <td><%= sex %></td>
+    <td><%= startDate %></td>
+  </script>
+
+  <script id="SalaryPage" type="text/template">
+    <h2>Salary History</h2>
+    <div id="table-container"></div>
+  </script>
+
+  <script id="SalaryCollectionView" type="text/template">
+    <table id="salary-table">
+      <thead>
+        <tr>
+          <th> Salary </th>
+          <th> Start Date </th>
+          <th> End Date </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </script>
+
+  <script id="SalaryView" type="text/template">
+    <td>$<%= salary %></td>
+    <td><%= startDate %></td>
+    <td><%= endDate %></td>
+  </script>
+
+<!-- Library .js files -->
+  <script type="text/javascript" src="/js/lib/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/js/lib/jquery-form/jquery.form.js"></script>
+  <script type="text/javascript" src="/js/lib/underscore/underscore.js"></script>
+  <script type="text/javascript" src="/js/lib/backbone/backbone.js"></script>
+  <script type="text/javascript" src="/js/lib/qwest/qwest-0.5.5.min.js"></script>
+
+  <script type="text/javascript" src="/js/lib/page.js/index.js"></script>
+
+<!-- App .js files -->
+  <script type="text/javascript" src="/js/views/HomePage/HomePage.js"></script>
+  <script type="text/javascript" src="/js/views/EmployeePage/EmployeePage.js"></script>
+  <script type="text/javascript" src="/js/views/EmployeePage/EmployeeCollectionView.js"></script>
+  <script type="text/javascript" src="/js/views/EmployeePage/EmployeeView.js"></script>
+  <script type="text/javascript" src="/js/views/SalaryPage/SalaryPage.js"></script>
+  <script type="text/javascript" src="/js/views/SalaryPage/SalaryCollectionView.js"></script>
+  <script type="text/javascript" src="/js/views/SalaryPage/SalaryView.js"></script>
+  <script type="text/javascript" src="/js/Router.js"></script>
+
+<!--   <script type="text/javascript" src="js/HeaderView.js"></script>
+  <script type="text/javascript" src="js/NavView.js"></script>
+  <script type="text/javascript" src="js/ProfileView.js"></script>
+  <script type="text/javascript" src="js/FollowerView.js"></script>
+  <script type="text/javascript" src="js/PodcastCollectionView.js"></script>
+  <script type="text/javascript" src="js/PodcastView.js"></script>
+  <script type="text/javascript" src="podcastData.js"></script> -->
+
+<!-- App .css files -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div id="ui-view"></div>
+  </div>
+</body>
+</html>
