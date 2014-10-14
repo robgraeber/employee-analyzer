@@ -20,7 +20,7 @@
     "underscore": "~1.7.0",
     "page.js": "visionmedia/page.js#~1.3.7",
     "jquery-form": "malsup/form#~3.46.0",
-    "qwest": "~0.5.5",
-    "moment": "~2.8.3"
+    "moment": "~2.8.3",
+    "highcharts": "~4.0.4"
   }
 }

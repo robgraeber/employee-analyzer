@@ -15,15 +15,21 @@ var SalaryPage = Backbone.View.extend({
       collection:salaryCollection
     });
 
+    this.salaryChartView = new SalaryChartView({
+      collection:salaryCollection
+    });
+
     salaryCollection.fetch({
       success: function(collection, response, options){
         this.salaryCollectionView.render();
+        this.salaryChartView.render();
       }.bind(this)
     });
   },
   render:function(){
     this.$el.html(this.template());
 
+    this.$el.find('#chart-container').html(this.salaryChartView.render());
     this.$el.find('#table-container').html(this.salaryCollectionView.render());
     
     return this.$el;

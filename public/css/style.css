@@ -1,4 +1,8 @@
-.HomePage {
+#container{
+  width: 920px;
+  margin: 0 auto;
+}
+.HomePage{
   position: relative;
   width: 500px;
   margin: 0 auto;
@@ -34,7 +38,7 @@
 .EmployeePage table{
   margin: 0 auto;
   border-collapse: separate;
-  border-spacing: 5px 5px;
+  border-spacing: 5px 10px;
 }
 .EmployeePage table, th{
   text-align: center;
@@ -42,14 +46,27 @@
 
 .SalaryPage {
   position: relative;
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
   text-align: center;
+}
+.SalaryPage #chart-container{
+  float:left;
+  width: 400px;
+  height: 450px;
+}
+.SalaryPage .SalaryChartView, .SalaryPage .SalaryChartView .chart{
+  width: 100%;
+  height: 100%;
+}
+.SalaryPage #table-container{
+  float:right;
+  width: 300px;
 }
 .SalaryPage table{
   margin: 0 auto;
   border-collapse: separate;
-  border-spacing: 5px 5px;
+  border-spacing: 5px 10px;
 }
 .SalaryPage table, th{
   text-align: center;

@@ -39,12 +39,17 @@
     <td><%= employeeId %></td>
     <td><a href="employees/<%= employeeId %>/salaries"><%= firstName + " " + lastName %></a></td>
     <td><%= sex %></td>
-    <td><%= startDate %></td>
+    <td><%= moment(startDate).format("MMM Do YYYY") %></td>
   </script>
 
   <script id="SalaryPage" type="text/template">
     <h2>Salary History</h2>
+    <div id="chart-container"></div>
     <div id="table-container"></div>
+  </script>
+
+  <script id="SalaryChartView" type="text/template">
+    <div class="chart"></div>
   </script>
 
   <script id="SalaryCollectionView" type="text/template">
@@ -61,9 +66,9 @@
   </script>
 
   <script id="SalaryView" type="text/template">
-    <td>$<%= salary %></td>
-    <td><%= startDate %></td>
-    <td><%= endDate %></td>
+    <td><b>$<%= salary %></b></td>
+    <td><%= moment(startDate).format("MMM Do YYYY") %></td>
+    <td><%= moment(endDate).format("MMM Do YYYY") %></td>
   </script>
 
 <!-- Library .js files -->
@@ -71,9 +76,10 @@
   <script type="text/javascript" src="/js/lib/jquery-form/jquery.form.js"></script>
   <script type="text/javascript" src="/js/lib/underscore/underscore.js"></script>
   <script type="text/javascript" src="/js/lib/backbone/backbone.js"></script>
-  <script type="text/javascript" src="/js/lib/qwest/qwest-0.5.5.min.js"></script>
-
+  <script type="text/javascript" src="/js/lib/moment/moment.js"></script>
   <script type="text/javascript" src="/js/lib/page.js/index.js"></script>
+  <script type="text/javascript" src="/js/lib/highcharts/highcharts.js"></script>
+  <script type="text/javascript" src="/js/lib/highcharts/highcharts-3d.js"></script>
 
 <!-- App .js files -->
   <script type="text/javascript" src="/js/views/HomePage/HomePage.js"></script>
@@ -81,17 +87,10 @@
   <script type="text/javascript" src="/js/views/EmployeePage/EmployeeCollectionView.js"></script>
   <script type="text/javascript" src="/js/views/EmployeePage/EmployeeView.js"></script>
   <script type="text/javascript" src="/js/views/SalaryPage/SalaryPage.js"></script>
+  <script type="text/javascript" src="/js/views/SalaryPage/SalaryChartView.js"></script>
   <script type="text/javascript" src="/js/views/SalaryPage/SalaryCollectionView.js"></script>
   <script type="text/javascript" src="/js/views/SalaryPage/SalaryView.js"></script>
   <script type="text/javascript" src="/js/Router.js"></script>
-
-<!--   <script type="text/javascript" src="js/HeaderView.js"></script>
-  <script type="text/javascript" src="js/NavView.js"></script>
-  <script type="text/javascript" src="js/ProfileView.js"></script>
-  <script type="text/javascript" src="js/FollowerView.js"></script>
-  <script type="text/javascript" src="js/PodcastCollectionView.js"></script>
-  <script type="text/javascript" src="js/PodcastView.js"></script>
-  <script type="text/javascript" src="podcastData.js"></script> -->
 
 <!-- App .css files -->
   <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
