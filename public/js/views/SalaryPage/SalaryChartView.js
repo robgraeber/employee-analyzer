@@ -2,12 +2,17 @@ var SalaryChartView = Backbone.View.extend({
   className: 'SalaryChartView',
   template: _.template($('#SalaryChartView').html()),
   render:function(){
+    var subtitle = '(Employee #'+this.model.get('employeeId')+')';
+    if(this.model.get('firstName') && this.model.get('lastName')){
+      subtitle = '(Employee - '+this.model.get('firstName')+" "+this.model.get('lastName')+')';
+    }
+
     this.$el.html(this.template());
 
     var series = _.map(this.collection.toJSON(), function(model){
       return [new Date(model.startDate).getFullYear(), model.salary];
     });
-    console.log(series);
+    
     setTimeout(function(){
       this.$el.find('.chart').highcharts({
         chart: {
@@ -32,11 +37,11 @@ var SalaryChartView = Backbone.View.extend({
         },
         yAxis: {
             title: {
-                text: 'Salary'
+                text: 'Annual Salary (USD)'
             }
         },
         subtitle: {
-            text: '(Total Compensation)'
+            text: subtitle
         },
         plotOptions: {
             column: {
@@ -44,6 +49,7 @@ var SalaryChartView = Backbone.View.extend({
             }
         },
         series: [{
+            name: 'Employee Salary',
             data: series
         }]
       });

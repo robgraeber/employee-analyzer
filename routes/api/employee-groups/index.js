@@ -11,7 +11,16 @@ module.exports = function(app) {
 
   app.post('/api/employee-groups', function (req, res){
 
-    // console.log('parse:',req.files);
+    if(!req.files.employees || !req.files.salaries){
+      res.status(500);
+      res.send({
+        results:{
+          error: "Missing file"
+        },
+        status:"Error"
+      });
+      return;
+    }
     Promise.all([
       fs.readFileAsync(req.files.employees.path),
       fs.readFileAsync(req.files.salaries.path)
@@ -54,6 +63,7 @@ module.exports = function(app) {
       });
     })
     .catch(function(err){
+      res.status(500);
       res.send({
         results:{
           error: err
@@ -63,12 +73,12 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/employee-groups/:id', function (req, res){
-    res.send({
-      results: {data: employeeGroups[req.params.id]},
-      status:"OK"
-    });
-  });
+  // app.get('/api/employee-groups/:id', function (req, res){
+  //   res.send({
+  //     results: {data: employeeGroups[req.params.id]},
+  //     status:"OK"
+  //   });
+  // });
 
   app.get('/api/employee-groups/:id/employees', function (req, res){
     var employeeGroup = employeeGroups[req.params.id] || {};
@@ -78,18 +88,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/employee-groups/:id/salaries', function (req, res){
-    var employeeGroup = employeeGroups[req.params.id] || {};
-    res.send({
-      results: {data: _.toArray(employeeGroup.salaries)},
-      status:"OK"
-    });
-  });
-
   app.get('/api/employee-groups/:id/employees/:employeeId/salaries', function (req, res){
     var employeeGroup = employeeGroups[req.params.id] || {};
+    var employees = employeeGroup.employees || {};
     var salaries = employeeGroup.salaries || {};
-    res.send({results:{data: salaries[req.params.employeeId]}, status:"OK"});
+    
+    res.send({
+      results:{ 
+        data: _.toArray(salaries[req.params.employeeId]),
+        parent: employees[req.params.employeeId] 
+      },
+      status:"OK"
+    });
   });
 };
 

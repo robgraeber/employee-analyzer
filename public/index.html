@@ -4,12 +4,12 @@
 <!-- App Templates -->
   <script id="HomePage" type="text/template">
     <div class="submit-form">
-      <h2>Submit Data</h2>
+      <h2>Salary Analyzer</h2>
       <form id="csv-form" action="/api/employee-groups" enctype="multipart/form-data" method="post">
         <div class="input-fields">
           <table>
-          <tr><td>Employees:</td> <td><input type="file" name="employees"></td></tr>
-          <tr><td>Salaries:</td> <td><input type="file" name="salaries"></td></tr>
+          <tr><td>Employees:</td> <td><input type="file" name="employees" required></td></tr>
+          <tr><td>Salaries:</td> <td><input type="file" name="salaries" required></td></tr>
           </table>
         </div>
         <input type="submit" value="Upload"><span id="status-text">0%</span>
@@ -18,8 +18,9 @@
   </script>
 
   <script id="EmployeePage" type="text/template">
-    <h2>Employee Page</h2>
+    <h2>Employee Database</h2>
     <div id="table-container"></div>
+    <span class="status-text"></span>
   </script>
   <script id="EmployeeCollectionView" type="text/template">
     <table id="employee-table">
@@ -46,6 +47,8 @@
     <h2>Salary History</h2>
     <div id="chart-container"></div>
     <div id="table-container"></div>
+    <span class="status-text"></span>
+
   </script>
 
   <script id="SalaryChartView" type="text/template">

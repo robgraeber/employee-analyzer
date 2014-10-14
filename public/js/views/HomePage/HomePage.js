@@ -14,14 +14,16 @@ var HomePage = Backbone.View.extend({
       uploadProgress: function(event, position, total, percentComplete) {
         $el.find("#status-text").text(percentComplete + '%');
       },
-      success: function() {
-        $el.find("#status-text").text('100%');
+      error: function(xhr){
+        $el.find("#status-text").text('Upload Failed!');
+        console.log("res:", xhr.responseJSON);
       },
-      complete: function(xhr) {
+      success: function(responseText, statusText, xhr) {
+        $el.find("#status-text").text('100%');
         console.log("res:", xhr.responseJSON);
         var results = xhr.responseJSON.results;
         page('/employee-groups/'+ results.resourceId+'/employees');
-      }
+      },
     }); 
     return this.$el;
   }

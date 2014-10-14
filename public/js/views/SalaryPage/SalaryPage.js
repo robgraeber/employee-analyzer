@@ -2,12 +2,15 @@ var SalaryPage = Backbone.View.extend({
   className: 'SalaryPage',
   template: _.template($('#SalaryPage').html()),
   initialize: function(){
+    this.model.set('loading', true);
+
     var SalaryCollection = Backbone.Collection.extend({
       parse: function(res){
         return res.results.data;
       }
     });
 
+    var employeeModel = this.model.clone();
     var salaryCollection = new SalaryCollection();
     salaryCollection.url = '/api/employee-groups/'+this.model.get('employeeGroupId')+'/employees/'+this.model.get('employeeId')+'/salaries';
 
@@ -16,13 +19,15 @@ var SalaryPage = Backbone.View.extend({
     });
 
     this.salaryChartView = new SalaryChartView({
-      collection:salaryCollection
+      collection:salaryCollection,
+      model: employeeModel
     });
 
     salaryCollection.fetch({
-      success: function(collection, response, options){
-        this.salaryCollectionView.render();
-        this.salaryChartView.render();
+      success: function(collection, res, options){
+        this.model.set('loading', false);
+        employeeModel.set(res.results.parent);
+        this.render();
       }.bind(this)
     });
   },
@@ -32,6 +37,15 @@ var SalaryPage = Backbone.View.extend({
     this.$el.find('#chart-container').html(this.salaryChartView.render());
     this.$el.find('#table-container').html(this.salaryCollectionView.render());
     
+    if(this.model.get('loading')){
+      this.$el.find('.status-text').text('Loading...');
+    }else{
+      if(this.salaryCollectionView.collection.length > 0){
+        this.$el.find('.status-text').text('');
+      }else{
+        this.$el.find('.status-text').text('Employee Not Found!');
+      }
+    }
     return this.$el;
   }
 });
