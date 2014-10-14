@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'mustache');
 app.engine('mustache', require('hogan-express'));
 
-app.use(express.favicon());
+app.use(express.favicon(__dirname +'/public/images/favicon.ico'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
