@@ -30,6 +30,7 @@ app.use(app.router);
 ['./routes/api/employee-groups/'].forEach(function(routePath){
   require(routePath)(app);
 });
+//404s are handled by frontend
 app.get('*', function(req, res) {
   res.sendfile('public/index.html', {root: __dirname })
 });
@@ -41,4 +42,6 @@ if ('development' == app.get('env')) {
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+module.exports = app;
 

@@ -3,14 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
     "bluebird": "^2.3.5",
     "csv-parse": "0.0.6",
     "express": "^3.6.0",
-    "formidable": "^1.0.15",
     "hogan-express": "~0.3.3",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.5",
+    "supertest": "^0.14.0"
   }
 }

@@ -16,7 +16,6 @@ var SalaryChartView = Backbone.View.extend({
     setTimeout(function(){
       this.$el.find('.chart').highcharts({
         chart: {
-            renderTo: 'container',
             type: 'column',
             margin: 75,
             options3d: {

@@ -2,7 +2,6 @@ var _ = require('underscore');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
 var csvParse = Promise.promisify(require('csv-parse'));
-var formidable = require('formidable');
 
 var employeeGroups = {};
 var currentId = 1;
@@ -72,13 +71,6 @@ module.exports = function(app) {
       });
     });
   });
-
-  // app.get('/api/employee-groups/:id', function (req, res){
-  //   res.send({
-  //     results: {data: employeeGroups[req.params.id]},
-  //     status:"OK"
-  //   });
-  // });
 
   app.get('/api/employee-groups/:id/employees', function (req, res){
     var employeeGroup = employeeGroups[req.params.id] || {};
