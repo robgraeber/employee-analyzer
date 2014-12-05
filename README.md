@@ -12,7 +12,8 @@ Get example csv's here:
 2. npm/bower install
 3. node app.js
 
-![](https://dl.dropboxusercontent.com/u/6061717/Screenshot%202014-10-14%2019.13.21.png)
+![](https://cloud.githubusercontent.com/assets/2387719/5312125/a9f4f4c0-7c21-11e4-8653-a720ad25a639.png)
+
 
 Demo: http://employee-analyzer.herokuapp.com/
 
